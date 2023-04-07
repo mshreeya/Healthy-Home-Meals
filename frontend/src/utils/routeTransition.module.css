@@ -1,0 +1,21 @@
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.page {
+    opacity: 0;
+}
+
+.page.fadeIn {
+    animation: fade forwards .5s;
+}
+
+.page.fadeOut {
+    animation: fade backwards .5s;
+}

@@ -1,0 +1,10 @@
+.headerSection {
+    background: white;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+
+.headerSection img {
+    height: 20rem;
+}

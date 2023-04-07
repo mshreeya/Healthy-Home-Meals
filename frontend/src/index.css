@@ -1,0 +1,27 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    box-sizing: border-box;
+    background: #0F161C;
+    color: white;
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #6d7e70;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #37B74A;
+}
