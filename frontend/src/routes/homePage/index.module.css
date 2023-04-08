@@ -1,10 +1,5 @@
 .headerSection {
-    background: white;
-    display: flex;
-    justify-content: center;
+    background: #F9F4EE;
     height: 100vh;
-}
-
-.headerSection img {
-    height: 20rem;
+    position: relative;
 }

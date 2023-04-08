@@ -1,0 +1,36 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: #ffffff;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.05);
+}
+
+nav {
+    padding-bottom: 3rem;
+    background: #F9F4EE;
+}
+
+.nav img {
+    height: 5rem;
+}
+
+.buttonsWrap {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+@media (max-width:800px) {
+    .nav img {
+        width: 60vw;
+        max-width: 15rem;
+        height: unset;
+    }
+
+    .nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}

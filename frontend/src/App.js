@@ -10,9 +10,15 @@ import NavBar from "./components/navBar";
 export default function App() {
     useEffect(hideLoader, []);
 
+    const documentHeight = () => {
+        const doc = document.documentElement;
+        doc.style.setProperty('--doc-height', `${window.innerHeight}px`);
+    }
+    documentHeight()
+
     return (
         <>
-            {/* <NavBar /> */}
+            <NavBar />
             <Routes>
                 <Route element={<RouteTransition />}>
                     <Route path="/" element={<HomePage />} />

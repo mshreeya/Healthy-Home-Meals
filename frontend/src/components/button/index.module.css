@@ -1,0 +1,50 @@
+.button {
+    background: #37B74A;
+    height: fit-content;
+    color: white;
+    padding: 1rem 1.8rem;
+    border-radius: 0.3rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    font-weight: bold;
+}
+
+.button::before {
+    content: "";
+    background: #2c903b;
+    position: absolute;
+    width: 150%;
+    height: 100%;
+    left: 100%;
+    top: 0;
+    transition: 1s cubic-bezier(0.65, 0.05, 0.36, 1);
+    transform: translateX(-17px) skewX(-45deg);
+    transform-origin: bottom;
+}
+
+.button:hover::before {
+    transform: translateX(calc(-100% - 17px)) skewX(-45deg);
+}
+
+.button span {
+    z-index: 2;
+    position: relative;
+}
+
+.button.hollow {
+    background: transparent;
+    color: black;
+    outline: 0.2rem solid #37B74A;
+    outline-offset: -0.2rem;
+    transition: 1s cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+
+.button.hollow::before {
+    background: #37B74A;
+}
+
+.button.hollow:hover {
+    color: white;
+}
