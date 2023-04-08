@@ -1,3 +1,15 @@
+@keyframes goUp {
+    0% {
+        transform: translateY(5rem);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0rem);
+        opacity: 1;
+    }
+}
+
 .nav {
     display: flex;
     justify-content: space-between;
@@ -5,6 +17,7 @@
     padding: 1rem 2rem;
     background: #ffffff;
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.05);
+    overflow: hidden;
 }
 
 nav {

@@ -21,3 +21,8 @@ body {
 ::-webkit-scrollbar-thumb {
     background: #37B74A;
 }
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
