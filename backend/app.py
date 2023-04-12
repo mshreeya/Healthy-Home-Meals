@@ -34,7 +34,15 @@ def login_is_required(function):
         if "google_id" not in session:
             return {"signedIn": False}
         else:
-            return {"signedIn": True, **function()}
+            return {
+                "signedIn": True,
+                "userData": {
+                    "name": session["name"],
+                    "fname": session["fname"],
+                    "email": session["email"],
+                },
+                **function(),
+            }
 
     return wrapper
 
@@ -67,6 +75,8 @@ def callback():
 
     session["google_id"] = id_info.get("sub")
     session["name"] = id_info.get("name")
+    session["fname"] = id_info.get("given_name")
+    session["email"] = id_info.get("email")
     return redirect(secrets_data["data"]["home"])
 
 

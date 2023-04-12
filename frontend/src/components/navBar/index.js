@@ -39,7 +39,7 @@ export default function NavBar() {
                         </a>
                     )}</InView>
                     <InView triggerOnce>{({ inView, ref }) => (
-                        <a href="#" ref={ref} style={{ animation: inView ? `${classes.goUp} 1s forwards .9s ease` : "none", opacity: 0 }} >
+                        <a href="/" ref={ref} style={{ animation: inView ? `${classes.goUp} 1s forwards .9s ease` : "none", opacity: 0 }} >
                             <CusButton hollow text="Settings" />
                         </a>
                     )}</InView>
