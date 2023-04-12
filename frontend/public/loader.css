@@ -1,6 +1,6 @@
 :root {
-    --backgroundClr: black;
-    --loaderClr: #00a5fe;
+    --backgroundClr: rgb(255, 255, 255);
+    --loaderClr: #37B74A;
 }
 
 #loader_block {
