@@ -1,0 +1,126 @@
+.card {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+}
+
+.webcam {
+    width: 100%;
+    height: 30rem;
+    object-fit: cover;
+    border-radius: 1rem;
+    z-index: 2;
+    position: absolute;
+}
+
+.webcamWrap {
+    max-width: 60rem;
+    width: 85vw;
+    position: relative;
+}
+
+.noWebcam {
+    width: 100%;
+    height: 30rem;
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    border-radius: 1rem;
+    background: rgb(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.capture {
+    width: 100%;
+    height: 30rem;
+    z-index: 3;
+    position: absolute;
+    top: 0;
+    display: block;
+    background: white;
+    opacity: 0;
+    transition: 1s;
+}
+
+
+.fadeAnim {
+    opacity: 1;
+}
+
+.capture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.noWebcam img {
+    height: 8rem;
+}
+
+.noWebcam div:nth-of-type(1) {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+
+.noWebcam div:nth-of-type(2) {
+    opacity: 0.7;
+}
+
+.uploadImg {
+    margin-top: 1rem;
+    width: calc(100% - 4rem);
+    padding: 2rem;
+    border: 0.2rem rgb(0, 0, 0, 0.1) dashed;
+    cursor: pointer;
+    position: relative;
+    border-radius: 1rem;
+    text-align: center;
+    color: rgb(0, 0, 0, 0.6);
+}
+
+.inputImg {
+    background: red;
+    position: absolute;
+    cursor: pointer;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.gapCover {
+    height: 30rem;
+    display: block;
+}
+
+.orText {
+    font-weight: bold;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+}
+
+.buttonsWrap {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+@media (max-width:585px) {
+    .buttonsWrap {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+}

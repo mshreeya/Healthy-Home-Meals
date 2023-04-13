@@ -6,6 +6,7 @@ import HomePage from "./routes/homePage";
 import RouteTransition from "./utils/routeTransition";
 import hideLoader from "./utils/hideLoader";
 import NavBar from "./components/navBar";
+import Footer from "./components/footer";
 
 export default function App() {
     useEffect(hideLoader, []);
@@ -25,6 +26,7 @@ export default function App() {
                     <Route path="*" element={<Navigate to="/" />} />
                 </Route>
             </Routes>
+            <Footer />
         </>
     );
 }
