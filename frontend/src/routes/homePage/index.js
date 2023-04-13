@@ -1,5 +1,6 @@
 import CameraCard from "../../components/cameraCard";
 import classes from "./index.module.css";
+import { InView } from "react-intersection-observer";
 
 export default function HomePage() {
     return (
@@ -13,7 +14,9 @@ export default function HomePage() {
                 </div>
                 <div className={classes.headerText}>
                     <div>Healthy <span style={{ color: "#46dc5c" }}>Outside</span> Starts From <span style={{ color: "#46dc5c" }}>Inside</span></div>
-                    <div>Take a picture of your refrigerator contents or the ingredients available and discover tons of healthy recipes that you can make at home.</div>
+                    <InView triggerOnce>{({ inView, ref }) => (
+                        <div ref={ref} style={{ animation: inView ? `${classes.goUp} 1s forwards .3s ease` : "none", opacity: 0 }} >Take a picture of your refrigerator contents or the ingredients available and discover tons of healthy recipes that you can make at home.</div>
+                    )}</InView>
                 </div>
             </section>
 

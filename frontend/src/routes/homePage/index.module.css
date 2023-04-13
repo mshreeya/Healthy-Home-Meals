@@ -1,3 +1,15 @@
+@keyframes goUp {
+    0% {
+        transform: translateY(5rem);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0rem);
+        opacity: 1;
+    }
+}
+
 .headerSection {
     height: 80vh;
     position: relative;
