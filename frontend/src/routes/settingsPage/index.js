@@ -1,6 +1,7 @@
 import classes from "./index.module.css";
 import CreatableSelect from 'react-select/creatable';
-import Select from 'react-select'
+import Select from 'react-select';
+import { InView } from "react-intersection-observer";
 
 import cardHeader from "../../assets/settingheader.jpg";
 import CusButton from "../../components/button";
@@ -13,8 +14,12 @@ export default function SettingsPage(props) {
     return (
         <>
             <section className={classes.topText}>
-                <div>Default <span style={{ color: "#37B74A" }}>Settings</span></div>
-                <div>Set your preferred settings to be used by default while you use Healthy Home Meals such as ingredients you usually have at your home, and your dietary preferences.</div>
+                <InView triggerOnce>{({ inView, ref }) => (
+                    <div ref={ref} style={{ animation: inView ? `${classes.goUp} 1s forwards ease` : "none", opacity: 0 }}>Default <span style={{ color: "#37B74A" }}>Settings</span></div>
+                )}</InView>
+                <InView triggerOnce>{({ inView, ref }) => (
+                    <div ref={ref} style={{ animation: inView ? `${classes.goUp} 1s .3s forwards ease` : "none", opacity: 0 }}>Set your preferred settings to be used by default while you use Healthy Home Meals such as ingredients you usually have at your home, and your dietary preferences.</div>
+                )}</InView>
             </section>
             <section className={classes.card}>
                 <div className={classes.cardImg}>
@@ -36,9 +41,11 @@ export default function SettingsPage(props) {
                         <div className={classes.formSubHead}>Select all your dietary styles and goals to further filter out your recipe results.</div>
                         <Select isMulti options={ingredientsList} className={classes.select} />
                     </div>
-                    <div className={classes.savebtn}>
-                        <CusButton text="Save changes" />
-                    </div>
+                    <InView triggerOnce>{({ inView, ref }) => (
+                        <div ref={ref} style={{ animation: inView ? `${classes.goUp} 1s forwards ease` : "none", opacity: 0 }} className={classes.savebtn}>
+                            <CusButton text="Save changes" />
+                        </div>
+                    )}</InView>
                 </div>
             </section>
         </>
