@@ -1,0 +1,125 @@
+.topText {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 65rem;
+    width: 90vw;
+    margin: 5rem auto;
+    margin-bottom: 3rem;
+    gap: 5vw;
+}
+
+.topText>div:nth-of-type(1) {
+    font-weight: bold;
+    font-size: 2.3rem;
+    white-space: nowrap;
+}
+
+.topText>div:nth-of-type(2) {
+    opacity: 0.7;
+}
+
+
+.card {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin: 0 auto;
+    margin-bottom: 5rem;
+    max-width: 80rem;
+    width: 90vw;
+    box-sizing: border-box;
+    display: flex;
+    gap: 1rem;
+}
+
+.cardImg {
+    width: 40vw;
+    border-radius: 1rem 0 0 1rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.cardImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cardImg::before {
+    content: "";
+    display: block;
+    position: absolute;
+    background: #37B74A;
+    width: 1rem;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.formArea {
+    flex: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1rem 1rem 0 0;
+}
+
+
+.formHead {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.formSubHead {
+    margin-bottom: 0.75rem;
+    opacity: 0.7;
+    font-size: 0.9rem;
+}
+
+.savebtn {
+    width: fit-content;
+}
+
+@media (max-width:980px) {
+    .topText {
+        flex-direction: column;
+        gap: 0;
+        text-align: left;
+        align-items: flex-start;
+        margin: 3rem auto;
+    }
+
+    .cardImg::before {
+        width: 100%;
+        height: 1rem;
+        top: unset;
+        bottom: 0;
+        left: 0;
+    }
+
+    .cardImg {
+        flex-direction: column;
+        width: 100%;
+        height: 10rem;
+        border-radius: 1rem 1rem 0 0;
+    }
+
+    .card {
+        flex-direction: column;
+        height: unset;
+        margin-bottom: 2rem;
+    }
+
+    .formArea {
+        flex: unset;
+        padding: 0;
+    }
+
+    .savebtn {
+        width: unset;
+        text-align: center;
+    }
+}

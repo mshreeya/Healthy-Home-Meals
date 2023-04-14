@@ -4,6 +4,7 @@ import CusButton from "../button";
 import { InView } from "react-intersection-observer";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { HashLink } from "react-router-hash-link";
 
 export default function NavBar() {
     const [isSignedIn, setIsSignedIn] = useState(2);
@@ -30,7 +31,7 @@ export default function NavBar() {
         <nav>
             <div className={classes.nav}>
                 <InView triggerOnce>{({ inView, ref }) => (
-                    <img src={logoLong} alt="logo" ref={ref} style={{ animation: inView ? `${classes.goUp} 1s forwards .3s ease` : "none", opacity: 0 }} />
+                    <HashLink to="/"><img src={logoLong} alt="logo" ref={ref} style={{ animation: inView ? `${classes.goUp} 1s forwards .3s ease` : "none", opacity: 0 }} /></HashLink>
                 )}</InView>
                 <div className={classes.buttonsWrap}>
                     <InView triggerOnce>{({ inView, ref }) => (
@@ -38,11 +39,11 @@ export default function NavBar() {
                             <CusButton text={logText[isSignedIn].text} />
                         </a>
                     )}</InView>
-                    <InView triggerOnce>{({ inView, ref }) => (
-                        <a href="/" ref={ref} style={{ animation: inView ? `${classes.goUp} 1s forwards .9s ease` : "none", opacity: 0 }} >
+                    {isSignedIn === 1 ? <InView triggerOnce>{({ inView, ref }) => (
+                        <HashLink to="/settings" ref={ref} style={{ animation: inView ? `${classes.goUp} 1s forwards .9s ease` : "none", opacity: 0 }} >
                             <CusButton text="Settings" />
-                        </a>
-                    )}</InView>
+                        </HashLink>
+                    )}</InView> : null}
                 </div>
             </div>
         </nav>
