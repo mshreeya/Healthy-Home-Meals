@@ -9,6 +9,7 @@
 .imgWrap {
     border-radius: 1rem 1rem 0 0;
     overflow: hidden;
+    height: 14rem;
 }
 
 .imgWrap img {

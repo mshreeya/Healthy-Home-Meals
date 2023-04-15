@@ -8,18 +8,18 @@ export default function RecipeCard(props) {
     return (
         <div className={classes.card}>
             <div className={classes.imgWrap}>
-                <img src="https://www.archanaskitchen.com/images/archanaskitchen/1-Author/Karthika_Gopalakrishnan/Phool_Gobhir_Paturi.jpg" alt="recipe" />
+                <img src={props.image} alt="recipe" />
             </div>
-            <div className={classes.name}>Bengali Phool Gobhir Paturi</div>
+            <div className={classes.name}>{props.name}</div>
             <div className={classes.item}>
                 <img src={timeImg} alt="icon" className={classes.icon} />
                 <span>Cooking time: </span>
-                <span>40 mins</span>
+                <span>{props.time} mins</span>
             </div>
             <div className={classes.item}>
                 <img src={knifeFormImg} alt="icon" className={classes.icon} />
                 <span>Cuisine: </span>
-                <span>Bengali dish</span>
+                <span>{props.cuisine}</span>
             </div>
             <div className={classes.btn}>
                 <CusButton text="View recipe" />

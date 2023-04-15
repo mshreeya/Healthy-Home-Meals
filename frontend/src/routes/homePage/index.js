@@ -4,12 +4,15 @@ import { InView } from "react-intersection-observer";
 import axios from "axios";
 import Ingredients from "../../components/ingredients";
 import RecipeCard from "../../components/recipeCard";
+import { useState } from "react";
 
 export default function HomePage() {
-    const recipesList = async () => {
+    const [recipesData, setrecipesData] = useState([])
+
+    const recipesList = async (rList) => {
         try {
-            const { data: response } = await axios.post(window.APIROOT + 'recipesList', {}, { withCredentials: true });
-            console.log(response);
+            const { data: response } = await axios.post(window.APIROOT + 'recipesList', { data: rList }, { withCredentials: true });
+            setrecipesData(response.recipes);
         } catch (error) {
             console.log(error);
         }
@@ -36,12 +39,12 @@ export default function HomePage() {
                 <CameraCard proceed={recipesList} />
             </section>
 
-            <Ingredients />
+            <Ingredients findBtn={recipesList} />
 
             <section className={classes.recipesCards}>
-                <RecipeCard />
-                <RecipeCard />
-                <RecipeCard />
+                {
+                    recipesData.map(e => <RecipeCard name={e.name} time={e.time} cuisine={e.cuisine} image={e.image} />)
+                }
             </section>
         </>
     );

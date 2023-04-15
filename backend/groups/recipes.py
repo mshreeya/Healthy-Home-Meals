@@ -31,5 +31,5 @@ def init(app):
     @app.route("/recipesList", methods=["POST"], endpoint="recipesList")
     @login_is_required
     def recipesList():
-        recipes = getRecipes(["potato", "cabbage"])
+        recipes = getRecipes(request.get_json()["data"])
         return {"recipes": recipes}
