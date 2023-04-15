@@ -25,6 +25,7 @@ export default function CameraCard(props) {
         if (webcamPresent && !capturedImg) {
             capture();
         }
+        props.proceed();
     }
 
     const uploadInput = function (e) {

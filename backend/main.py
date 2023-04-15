@@ -2,6 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 import groups.auth
 import groups.defaults
+import groups.recipes
 from pymongo import MongoClient
 import json
 
@@ -16,6 +17,7 @@ db = dbClient.healthyHomeMeals
 # Route groups
 groups.auth.init(app, db)
 groups.defaults.init(app, db)
+groups.recipes.init(app)
 
 if __name__ == "__main__":
     app.run(debug=True, port=4950)

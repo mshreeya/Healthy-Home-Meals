@@ -1,8 +1,18 @@
 import CameraCard from "../../components/cameraCard";
 import classes from "./index.module.css";
 import { InView } from "react-intersection-observer";
+import axios from "axios";
 
 export default function HomePage() {
+    const recipesList = async () => {
+        try {
+            const { data: response } = await axios.post(window.APIROOT + 'recipesList', {}, { withCredentials: true });
+            console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <>
             <section className={classes.headerSection}>
@@ -21,7 +31,7 @@ export default function HomePage() {
             </section>
 
             <section className={classes.headerBelow}>
-                <CameraCard />
+                <CameraCard proceed={recipesList} />
             </section>
         </>
     );
