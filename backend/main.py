@@ -17,7 +17,7 @@ db = dbClient.healthyHomeMeals
 # Route groups
 groups.auth.init(app, db)
 groups.defaults.init(app, db)
-groups.recipes.init(app)
+groups.recipes.init(app, db)
 
 if __name__ == "__main__":
     app.run(debug=True, port=4950)

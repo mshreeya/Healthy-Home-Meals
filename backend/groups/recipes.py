@@ -4,7 +4,9 @@ from utils.recipes import getRecipes, getRecipeByIndex
 from utils.ingredients import predict
 
 
-def init(app):
+def init(app, db):
+    dbUsers = db.users
+
     @app.route("/recipesList", methods=["POST"], endpoint="recipesList")
     @login_is_required
     def recipesList():
@@ -23,4 +25,6 @@ def init(app):
         data = request.get_json()
         imgData = data["img"]
         ingredients = predict(imgData)
-        return {"ingredients": ingredients}
+        userData = dbUsers.find_one({"email": session["email"]}, {"_id": 0})
+        userIngredients = userData["data"]["ingredients"]
+        return {"ingredients": list(set(ingredients + userIngredients))}
