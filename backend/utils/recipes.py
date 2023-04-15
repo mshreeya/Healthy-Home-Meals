@@ -62,22 +62,21 @@ def getRecipeByIndex(index):
         "url": i[5],
         "image": i[7],
         "id": index,
-        "youtube": "https://www.youtube.com/embed/p5ZKLovRiWQ",
     }
 
-    # res = requests.get(
-    #     "https://www.googleapis.com/youtube/v3/search",
-    #     params={
-    #         "q": f"{recipes_dict['name']} recipe",
-    #         "videoEmbeddable": "true",
-    #         "type": "video",
-    #         "key": ytApiKey,
-    #         "maxResults": 1,
-    #         "part": "snippet",
-    #     },
-    # )
-    # resData = res.json()
-    # recipes_dict["youtube"] = (
-    #     "https://www.youtube.com/embed/" + resData["items"][0]["id"]["videoId"]
-    # )
+    res = requests.get(
+        "https://www.googleapis.com/youtube/v3/search",
+        params={
+            "q": f"{recipes_dict['name']} recipe",
+            "videoEmbeddable": "true",
+            "type": "video",
+            "key": ytApiKey,
+            "maxResults": 1,
+            "part": "snippet",
+        },
+    )
+    resData = res.json()
+    recipes_dict["youtube"] = (
+        "https://www.youtube.com/embed/" + resData["items"][0]["id"]["videoId"]
+    )
     return recipes_dict
