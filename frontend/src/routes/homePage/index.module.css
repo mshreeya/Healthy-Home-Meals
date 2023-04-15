@@ -83,3 +83,18 @@
     max-width: 40rem;
     line-height: 1.5rem;
 }
+
+.recipesCards {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    padding: 0 2rem;
+}
+
+@media (max-width:585px) {
+    .recipesCards {
+        gap: 1rem;
+    }
+}

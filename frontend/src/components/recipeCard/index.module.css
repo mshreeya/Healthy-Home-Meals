@@ -1,0 +1,55 @@
+.card {
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    width: 20rem;
+    min-width: 20rem;
+    border-radius: 1rem;
+}
+
+.imgWrap {
+    border-radius: 1rem 1rem 0 0;
+    overflow: hidden;
+}
+
+.imgWrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.name {
+    font-weight: bold;
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.icon {
+    height: 1rem;
+}
+
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.9rem;
+    opacity: 0.5;
+    margin-top: 0.3rem;
+}
+
+.item>span:nth-of-type(1) {
+    font-weight: bold;
+}
+
+.btn {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+@media (max-width:585px) {
+    .card {
+        width: 85vw;
+        min-width: 85vw;
+    }
+}

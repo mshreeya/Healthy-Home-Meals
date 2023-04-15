@@ -2,6 +2,8 @@ import CameraCard from "../../components/cameraCard";
 import classes from "./index.module.css";
 import { InView } from "react-intersection-observer";
 import axios from "axios";
+import Ingredients from "../../components/ingredients";
+import RecipeCard from "../../components/recipeCard";
 
 export default function HomePage() {
     const recipesList = async () => {
@@ -32,6 +34,14 @@ export default function HomePage() {
 
             <section className={classes.headerBelow}>
                 <CameraCard proceed={recipesList} />
+            </section>
+
+            <Ingredients />
+
+            <section className={classes.recipesCards}>
+                <RecipeCard />
+                <RecipeCard />
+                <RecipeCard />
             </section>
         </>
     );
