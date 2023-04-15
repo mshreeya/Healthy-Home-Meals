@@ -8,6 +8,7 @@ import hideLoader from "./utils/hideLoader";
 import NavBar from "./components/navBar";
 import Footer from "./components/footer";
 import SettingsPage from "./routes/settingsPage";
+import RecipePage from "./routes/recipePage";
 
 export default function App() {
     useEffect(hideLoader, []);
@@ -25,6 +26,7 @@ export default function App() {
                 <Route element={<RouteTransition />}>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/settings" element={<SettingsPage />} />
+                    <Route path="/recipe/:id" element={<RecipePage />} />
                     <Route path="*" element={<Navigate to="/" />} />
                 </Route>
             </Routes>

@@ -12,6 +12,7 @@ export default function HomePage() {
     const recipesList = async (rList) => {
         try {
             const { data: response } = await axios.post(window.APIROOT + 'recipesList', { data: rList }, { withCredentials: true });
+            console.log(response.recipes);
             setrecipesData(response.recipes);
         } catch (error) {
             console.log(error);
@@ -43,7 +44,7 @@ export default function HomePage() {
 
             <section className={classes.recipesCards}>
                 {
-                    recipesData.map(e => <RecipeCard name={e.name} time={e.time} cuisine={e.cuisine} image={e.image} />)
+                    recipesData.map(e => <RecipeCard name={e.name} time={e.time} cuisine={e.cuisine} image={e.image} id={e.id} />)
                 }
             </section>
         </>
