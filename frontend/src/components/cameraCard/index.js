@@ -1,6 +1,6 @@
 import classes from "./index.module.css";
 import Webcam from "react-webcam";
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { InView } from "react-intersection-observer";
 
 import noVideo from "../../assets/noVideo.png";
@@ -10,6 +10,18 @@ export default function CameraCard(props) {
     const [capturedImg, setcapturedImg] = useState(null);
     const [capturedImgInd, setcapturedImgInd] = useState(null);
     const [webcamPresent, setWebcamPresent] = useState(true);
+
+    const blobToBase64 = (url) => {
+        return new Promise(async (resolve, _) => {
+            const response = await fetch(url);
+            const blob = await response.blob();
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(blob);
+            fileReader.onloadend = function () {
+                resolve(fileReader.result);
+            }
+        });
+    };
 
     const webcamRef = useRef(null);
     const capture = useCallback(
@@ -28,10 +40,17 @@ export default function CameraCard(props) {
         props.proceed();
     }
 
-    const uploadInput = function (e) {
-        setcapturedImg(URL.createObjectURL(e.target.files[0]));
+    const uploadInput = async function (e) {
+        const imgFile = await blobToBase64(URL.createObjectURL(e.target.files[0]))
+        setcapturedImg(imgFile);
         setcapturedImgInd(true);
     }
+
+    useEffect(() => {
+        props.setPhotoTaken(capturedImg);
+        console.log(capturedImg);
+    }, [capturedImg])
+
 
     return (
         <div className={classes.card}>

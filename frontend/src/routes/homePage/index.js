@@ -9,6 +9,7 @@ import { useState } from "react";
 export default function HomePage() {
     const [recipesData, setrecipesData] = useState([]);
     const [ingredientsData, setIngredientsData] = useState([]);
+    const [photoTaken, setPhotoTaken] = useState(null);
 
     const recipesList = async (rList) => {
         try {
@@ -21,7 +22,8 @@ export default function HomePage() {
 
     const ingredientsList = async () => {
         try {
-            const { data: response } = await axios.post(window.APIROOT + 'ingredientsList', {}, { withCredentials: true });
+            const { data: response } = await axios.post(window.APIROOT + 'ingredientsList', { img: photoTaken }, { withCredentials: true });
+            console.log(response);
             setIngredientsData(response.ingredients);
         } catch (error) {
             console.log(error);
@@ -46,7 +48,7 @@ export default function HomePage() {
             </section>
 
             <section className={classes.headerBelow}>
-                <CameraCard proceed={ingredientsList} setrecipesData={setrecipesData} setIngredientsData={setIngredientsData} />
+                <CameraCard proceed={ingredientsList} setrecipesData={setrecipesData} setIngredientsData={setIngredientsData} setPhotoTaken={setPhotoTaken} />
             </section>
 
             {ingredientsData.length === 0 ? null :

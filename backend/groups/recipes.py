@@ -1,6 +1,7 @@
 from flask import session, request
 from utils.loginCheck import login_is_required
 from utils.recipes import getRecipes, getRecipeByIndex
+from utils.ingredients import predict
 
 
 def init(app):
@@ -19,4 +20,7 @@ def init(app):
     @app.route("/ingredientsList", methods=["POST"], endpoint="ingredientsList")
     @login_is_required
     def ingredientsList():
-        return {"ingredients": ["potato", "cabbage"]}
+        data = request.get_json()
+        imgData = data["img"]
+        ingredients = predict(imgData)
+        return {"ingredients": ingredients}
