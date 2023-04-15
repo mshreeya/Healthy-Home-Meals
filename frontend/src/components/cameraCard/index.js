@@ -75,7 +75,9 @@ export default function CameraCard(props) {
                 <div className={classes.buttonsWrap}>
                     <InView triggerOnce>{({ inView, ref }) => (
                         <div onClick={proceedLogic} ref={ref} style={{ animation: inView ? `${classes.goUp} 1s forwards ease` : "none", opacity: 0 }}>
-                            <CusButton text="Proceed" />
+                            <div style={(props.proceedBtn === "Proceed" && capturedImgInd) ? null : { pointerEvents: "none", cursor: "default", opacity: 0.2 }}>
+                                <CusButton text={props.proceedBtn} />
+                            </div>
                         </div>
                     )}</InView>
 
@@ -84,6 +86,7 @@ export default function CameraCard(props) {
                             document.getElementById("imageuploadarea").value = "";
                             props.setIngredientsData([]);
                             props.setrecipesData([]);
+                            props.setProceedBtn("Proceed");
                             setcapturedImgInd(false);
                             setTimeout(() => {
                                 setcapturedImg(null);

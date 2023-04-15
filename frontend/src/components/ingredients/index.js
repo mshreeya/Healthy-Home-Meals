@@ -27,8 +27,8 @@ export default function Ingredients(props) {
             />
             <div className={classes.button} onClick={() => {
                 props.findBtn(props.ingredientsData);
-            }} style={props.ingredientsData === 0 ? { pointerEvents: "none", cursor: "default", opacity: 0.2 } : {}}>
-                <CusButton text="Find recipes" />
+            }} style={(props.ingredientsData === 0 || props.findBtnText !== "Find recipes") ? { pointerEvents: "none", cursor: "default", opacity: 0.2 } : {}}>
+                <CusButton text={props.findBtnText} />
             </div>
         </section>
     );

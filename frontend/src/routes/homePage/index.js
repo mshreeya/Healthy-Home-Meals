@@ -11,22 +11,28 @@ export default function HomePage() {
     const [ingredientsData, setIngredientsData] = useState([]);
     const [photoTaken, setPhotoTaken] = useState(null);
 
+    const [proceedBtn, setProceedBtn] = useState("Proceed");
+    const [findBtn, setFindBtn] = useState("Find recipes");
+
     const recipesList = async (rList) => {
         try {
+            setFindBtn("Finding ⌛");
             const { data: response } = await axios.post(window.APIROOT + 'recipesList', { data: rList }, { withCredentials: true });
             setrecipesData(response.recipes);
+            setFindBtn("Found ✅");
         } catch (error) {
-            console.log(error);
+            setFindBtn("Error ❌");
         }
     }
 
     const ingredientsList = async () => {
         try {
+            setProceedBtn("Processing ⌛")
             const { data: response } = await axios.post(window.APIROOT + 'ingredientsList', { img: photoTaken }, { withCredentials: true });
-            console.log(response);
             setIngredientsData(response.ingredients);
+            setProceedBtn("Processed ✅")
         } catch (error) {
-            console.log(error);
+            setProceedBtn("Error ❌")
         }
     }
 
@@ -48,11 +54,11 @@ export default function HomePage() {
             </section>
 
             <section className={classes.headerBelow}>
-                <CameraCard proceed={ingredientsList} setrecipesData={setrecipesData} setIngredientsData={setIngredientsData} setPhotoTaken={setPhotoTaken} />
+                <CameraCard setProceedBtn={setProceedBtn} proceedBtn={proceedBtn} proceed={ingredientsList} setrecipesData={setrecipesData} setIngredientsData={setIngredientsData} setPhotoTaken={setPhotoTaken} />
             </section>
 
             {ingredientsData.length === 0 ? null :
-                <Ingredients findBtn={recipesList} ingredientsData={ingredientsData} setIngredientsData={setIngredientsData} />
+                <Ingredients findBtn={recipesList} ingredientsData={ingredientsData} setIngredientsData={setIngredientsData} findBtnText={findBtn} />
             }
 
             <section className={classes.recipesCards}>
