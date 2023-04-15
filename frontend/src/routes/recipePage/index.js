@@ -26,7 +26,7 @@ export default function RecipePage(props) {
             }
         }
         fetchData();
-    }, []);
+    }, [id]);
 
     return (
         <>

@@ -7,13 +7,22 @@ import RecipeCard from "../../components/recipeCard";
 import { useState } from "react";
 
 export default function HomePage() {
-    const [recipesData, setrecipesData] = useState([])
+    const [recipesData, setrecipesData] = useState([]);
+    const [ingredientsData, setIngredientsData] = useState([]);
 
     const recipesList = async (rList) => {
         try {
             const { data: response } = await axios.post(window.APIROOT + 'recipesList', { data: rList }, { withCredentials: true });
-            console.log(response.recipes);
             setrecipesData(response.recipes);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const ingredientsList = async () => {
+        try {
+            const { data: response } = await axios.post(window.APIROOT + 'ingredientsList', {}, { withCredentials: true });
+            setIngredientsData(response.ingredients);
         } catch (error) {
             console.log(error);
         }
@@ -37,10 +46,12 @@ export default function HomePage() {
             </section>
 
             <section className={classes.headerBelow}>
-                <CameraCard proceed={recipesList} />
+                <CameraCard proceed={ingredientsList} setrecipesData={setrecipesData} setIngredientsData={setIngredientsData} />
             </section>
 
-            <Ingredients findBtn={recipesList} />
+            {ingredientsData.length === 0 ? null :
+                <Ingredients findBtn={recipesList} ingredientsData={ingredientsData} setIngredientsData={setIngredientsData} />
+            }
 
             <section className={classes.recipesCards}>
                 {

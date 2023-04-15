@@ -1,3 +1,15 @@
+@keyframes scaleFull {
+    0% {
+        opacity: 0;
+        transform: translateY(2rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0rem);
+    }
+}
+
 .card {
     max-width: 60rem;
     width: 85vw;
@@ -6,6 +18,9 @@
     padding: 1rem;
     border-radius: 1rem;
     margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(2rem);
+    animation: scaleFull forwards 1s;
 }
 
 .title {

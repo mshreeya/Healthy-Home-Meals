@@ -5,11 +5,11 @@ import { InView } from "react-intersection-observer";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
-import { ingredientsList, dietList } from "../../assets/items";
 
 import cardHeader from "../../assets/settingheader.jpg";
 import CusButton from "../../components/button";
 
+import { ingredientsList, dietList } from "../../assets/items";
 let valueLabel = {};
 
 for (let i of ingredientsList)

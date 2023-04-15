@@ -15,3 +15,8 @@ def init(app):
     def recipeDetails():
         details = getRecipeByIndex(request.get_json()["id"])
         return details
+
+    @app.route("/ingredientsList", methods=["POST"], endpoint="ingredientsList")
+    @login_is_required
+    def ingredientsList():
+        return {"ingredients": ["potato", "cabbage"]}

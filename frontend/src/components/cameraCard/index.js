@@ -63,6 +63,8 @@ export default function CameraCard(props) {
                     <InView triggerOnce>{({ inView, ref }) => (
                         <div ref={ref} style={{ animation: inView ? `${classes.goUp} 1s forwards .3s ease` : "none", opacity: 0 }} onClick={() => {
                             document.getElementById("imageuploadarea").value = "";
+                            props.setIngredientsData([]);
+                            props.setrecipesData([]);
                             setcapturedImgInd(false);
                             setTimeout(() => {
                                 setcapturedImg(null);
