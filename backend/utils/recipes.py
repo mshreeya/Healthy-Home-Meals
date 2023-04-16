@@ -7,13 +7,13 @@ import json
 import requests
 
 ingredients_file = os.path.join(
-    pathlib.Path(__file__).parent.parent, "data\\ingredients.csv"
+    pathlib.Path(__file__).parent.parent, "data/ingredients.csv"
 )
 ingredients = pd.read_csv(ingredients_file)
 vectorizer = CountVectorizer(stop_words="english")
 ingredients_vectors = vectorizer.fit_transform(ingredients["ingredients"])
 
-recipes_file = os.path.join(pathlib.Path(__file__).parent.parent, "data\\recipes.csv")
+recipes_file = os.path.join(pathlib.Path(__file__).parent.parent, "data/recipes.csv")
 recipes = pd.read_csv(recipes_file)
 
 secret_file = os.path.join(pathlib.Path(__file__).parent.parent, "client_secret.json")
