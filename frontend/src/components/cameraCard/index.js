@@ -28,7 +28,9 @@ export default function CameraCard(props) {
         () => {
             const imageSrc = webcamRef.current.getScreenshot();
             setcapturedImg(imageSrc);
+            props.setPhotoTaken(imageSrc);
             setcapturedImgInd(true);
+            props.proceed();
         },
         [webcamRef]
     );
@@ -36,6 +38,7 @@ export default function CameraCard(props) {
     const proceedLogic = function () {
         if (webcamPresent && !capturedImg) {
             capture();
+            return;
         }
         if (props.proceedBtn === "Proceed" && (capturedImgInd || webcamPresent)) {
             props.proceed();
@@ -50,7 +53,6 @@ export default function CameraCard(props) {
 
     useEffect(() => {
         props.setPhotoTaken(capturedImg);
-        console.log(capturedImg);
     }, [capturedImg])
 
 
