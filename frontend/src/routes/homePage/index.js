@@ -25,11 +25,11 @@ export default function HomePage() {
         }
     }
 
-    const ingredientsList = async () => {
+    const ingredientsList = async (photoData) => {
         try {
-            console.log(photoTaken);
             setProceedBtn("Processing ⌛")
-            const { data: response } = await axios.post(window.APIROOT + 'ingredientsList', { img: photoTaken }, { withCredentials: true });
+            console.log(photoData);
+            const { data: response } = await axios.post(window.APIROOT + 'ingredientsList', { img: photoData }, { withCredentials: true });
             if (!response.signedIn) {
                 window.location.replace(window.APIROOT + "signin");
             }

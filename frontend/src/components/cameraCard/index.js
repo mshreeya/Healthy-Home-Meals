@@ -28,9 +28,8 @@ export default function CameraCard(props) {
         () => {
             const imageSrc = webcamRef.current.getScreenshot();
             setcapturedImg(imageSrc);
-            props.setPhotoTaken(imageSrc);
             setcapturedImgInd(true);
-            props.proceed();
+            props.proceed(imageSrc);
         },
         [webcamRef]
     );
@@ -41,7 +40,7 @@ export default function CameraCard(props) {
             return;
         }
         if (props.proceedBtn === "Proceed" && (capturedImgInd || webcamPresent)) {
-            props.proceed();
+            props.proceed(capturedImg);
         }
     }
 
