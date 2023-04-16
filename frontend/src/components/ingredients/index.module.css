@@ -53,6 +53,7 @@
 @media (max-width:585px) {
     .select {
         width: 100%;
+        min-width: unset;
     }
 
     .card {

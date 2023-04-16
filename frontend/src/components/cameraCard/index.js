@@ -37,7 +37,9 @@ export default function CameraCard(props) {
         if (webcamPresent && !capturedImg) {
             capture();
         }
-        props.proceed();
+        if (props.proceedBtn === "Proceed" && (capturedImgInd || webcamPresent)) {
+            props.proceed();
+        }
     }
 
     const uploadInput = async function (e) {

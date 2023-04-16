@@ -50,7 +50,7 @@ labelNames = [
     "Turnip",
 ]
 
-PROB_THRESHOLD = 0.01
+PROB_THRESHOLD = 0.2
 model_path = os.path.join(pathlib.Path(__file__).parent.parent, "data")
 model = tensorflow.saved_model.load(model_path)
 serve = model.signatures["serving_default"]

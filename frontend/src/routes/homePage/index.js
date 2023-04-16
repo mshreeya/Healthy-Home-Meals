@@ -10,6 +10,7 @@ export default function HomePage() {
     const [recipesData, setrecipesData] = useState([]);
     const [ingredientsData, setIngredientsData] = useState([]);
     const [photoTaken, setPhotoTaken] = useState(null);
+    const [signInNeed, setSignInNeed] = useState(false);
 
     const [proceedBtn, setProceedBtn] = useState("Proceed");
     const [findBtn, setFindBtn] = useState("Find recipes");
@@ -29,8 +30,13 @@ export default function HomePage() {
         try {
             setProceedBtn("Processing ⌛")
             const { data: response } = await axios.post(window.APIROOT + 'ingredientsList', { img: photoTaken }, { withCredentials: true });
-            setIngredientsData(response.ingredients);
-            setProceedBtn("Processed ✅")
+            if (!response.signedIn) {
+                window.location.replace(window.APIROOT + "signin");
+            }
+            else {
+                setIngredientsData(response.ingredients);
+                setProceedBtn("Processed ✅")
+            }
         } catch (error) {
             setProceedBtn("Error ❌")
         }
