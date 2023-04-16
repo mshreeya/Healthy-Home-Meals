@@ -25,9 +25,9 @@ export default function RecipeCard(props) {
                     <span>{props.cuisine}</span>
                 </div>
                 <div className={classes.btn}>
-                    <HashLink to={"/recipe/" + props.id}>
+                    <a target="_blank" rel="noopener noreferrer" href={"/recipe/" + props.id}>
                         <CusButton text="View recipe" />
-                    </HashLink>
+                    </a>
                 </div>
             </div>
         </div>

@@ -64,7 +64,12 @@ def init(app, db):
 
         dbUsers.update_one(
             {"email": session["email"]},
-            {"$set": {"email": session["email"]}},
+            {
+                "$set": {"email": session["email"]},
+                "$setOnInsert": {
+                    "data": {"ingredients": [], "allergies": [], "dietaryStyle": []}
+                },
+            },
             upsert=True,
         )
 
