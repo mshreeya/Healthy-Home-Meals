@@ -107,3 +107,7 @@ Run the below command in the backend folder.
 ```
 python main.py
 ```
+
+## ML Datasets
+
+[**Google Drive**](https://drive.google.com/drive/folders/1IjCJlIM78uOY4-LvpVpV6utcSv4wHqpo)
