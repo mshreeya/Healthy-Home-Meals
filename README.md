@@ -1,9 +1,7 @@
 <h1 align="center">Healthy Home Meals</h1>
 
-<h3 align="center">Submission to GeeksForGeeks - Solving for India</h3>
-
 <p align="center">
-<a href="https://healthy-home-meals.roshan.cyou"><img src = "https://img.shields.io/badge/Visit Site-Page?style=flat&logo=alibabacloud&logoColor=white&color=2F6BFF" height = 30px></a> <a href="https://www.youtube.com/watch?v=wCTLdd3WJWQ"><img src = "https://img.shields.io/badge/Watch on YouTube-Page?style=flat&logo=youtube&logoColor=white&color=FE0100" height = 30px></a>
+<a href="https://healthy-home-meals.roshan.cyou"><img src = "https://img.shields.io/badge/Visit Site-Page?style=flat&logo=alibabacloud&logoColor=white&color=2F6BFF" height = 30px></a> <a href="https://www.youtube.com/watch?v=JQY2UnyVrqY"><img src = "https://img.shields.io/badge/Watch on YouTube-Page?style=flat&logo=youtube&logoColor=white&color=FE0100" height = 30px></a>
 </p>
 
 <img src="./frontend/public/banner.png" width="100%"/>
@@ -24,13 +22,6 @@
 | SciKit Learn | ML model to find matching recipes         |
 | Google Cloud | Hosting on an AMD instance                |
 | Cloudflare   | CDN for static data                       |
-
-## Team Geekoquad
-
-- Roshan Dash
-- Shreeya Mishra
-- Subrat Kumar Swain
-- Ehtesham Alam
 
 ## Setup process
 
