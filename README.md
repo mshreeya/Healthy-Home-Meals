@@ -18,9 +18,9 @@
 | React.js     | Frontend                                  |
 | Flask        | Backend                                   |
 | MongoDB      | Database                                  |
-| Tensorflow   | ML model to detect ingredients in picture |
+| Tensorflow and CustomVision   | ML model to detect ingredients in picture |
 | SciKit Learn | ML model to find matching recipes         |
-| Google Cloud | Hosting on an AMD instance                |
+| Azure | Hosting                |
 | Cloudflare   | CDN for static data                       |
 
 ## Setup process
