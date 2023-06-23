@@ -53,7 +53,7 @@ def getRecipes(ingredients, diet):
             "instructions": [],
             "url": i["recipeUrl"].split("/")[-1][:-5],
             "image": i["recipeImage"],
-            "diet": ", ".join(i["dietary"]),
+            "diet": ", ".join([item for item in i["dietary"] if item != "Vegetarian"]),
         }
         for i in resData["results"]
     ]

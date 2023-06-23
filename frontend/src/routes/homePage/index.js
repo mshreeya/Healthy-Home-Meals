@@ -7,7 +7,7 @@ import RecipeCard from "../../components/recipeCard";
 import { useState } from "react";
 
 export default function HomePage() {
-    const [recipesData, setrecipesData] = useState([]);
+    const [recipesData, setrecipesData] = useState(null);
     const [ingredientsData, setIngredientsData] = useState([]);
     const [photoTaken, setPhotoTaken] = useState(null);
 
@@ -67,11 +67,16 @@ export default function HomePage() {
                 <Ingredients findBtn={recipesList} ingredientsData={ingredientsData} setIngredientsData={setIngredientsData} findBtnText={findBtn} />
             }
 
-            <section className={classes.recipesCards}>
-                {
-                    recipesData.map(e => <RecipeCard name={e.name} time={e.time} serves={e.serves} image={e.image} url={e.url} diet={e.diet}/>)
-                }
-            </section>
+            {recipesData === null ? null :
+                <section className={classes.recipesCards}>
+                    {
+                        recipesData.length === 0 ? <h1>No recipes found ☹️</h1> : null
+                    }
+                    {
+                        recipesData.map(e => <RecipeCard name={e.name} time={e.time} serves={e.serves} image={e.image} url={e.url} diet={e.diet} />)
+                    }
+                </section>
+            }
         </>
     );
 }
