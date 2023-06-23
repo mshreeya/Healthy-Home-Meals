@@ -39,6 +39,7 @@ def getRecipes(ingredients, diet):
         },
     )
     resData = res.json()
+
     suggested_recipes_dict = [
         {
             "name": i["recipeName"],
@@ -48,6 +49,7 @@ def getRecipes(ingredients, diet):
             "instructions": [],
             "url": i["recipeUrl"].split("/")[-1][:-5],
             "image": i["recipeImage"],
+            "diet": ", ".join(i["dietary"]),
         }
         for i in resData["results"]
     ]

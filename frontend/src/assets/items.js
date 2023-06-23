@@ -45,4 +45,6 @@ export const dietList = [
     { value: "vegetarian", label: "Vegeterian" },
     { value: "dairy-free", label: "Dairy Free" },
     { value: "gluten-free", label: "Gluten Free" },
+    { value: "vegan", label: "Vegan" }
 ];
+
