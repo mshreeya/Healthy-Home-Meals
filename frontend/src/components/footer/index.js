@@ -6,7 +6,7 @@ export default function Footer(props) {
     return (
         <footer className={classes.footer}>
             <div onClick={() => setText(text + 1)}>
-                {text > 2 ? "Roshan" : "Made with"} ❤️ {text > 2 ? "Shreeya" : "by team Geekoquad"}
+                {text > 2 ? "Roshan" : "Made with"} ❤️ {text > 2 ? "Shreeya" : "by team Zenith"}
             </div>
         </footer>
     );
