@@ -42,10 +42,7 @@ export const ingredientsList = [
 ];
 
 export const dietList = [
-    { value: "vegeterian", label: "Vegeterian" },
-    { value: "lowcalorie", label: "Low Calorie" },
-    { value: "nolactose", label: "Lactose Free" },
-    { value: "nogluten", label: "Gluten Free" },
-    { value: "nodairy", label: "Dairy Free" },
-    { value: "kosher", label: "Kosher" },
+    { value: "vegetarian", label: "Vegeterian" },
+    { value: "dairy-free", label: "Dairy Free" },
+    { value: "gluten-free", label: "Gluten Free" },
 ];

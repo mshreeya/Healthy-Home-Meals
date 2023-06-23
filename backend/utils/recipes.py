@@ -5,6 +5,7 @@ import os
 import pathlib
 import json
 import requests
+from pprint import pprint
 
 ingredients_file = os.path.join(
     pathlib.Path(__file__).parent.parent, "data/ingredients.csv"
@@ -28,27 +29,33 @@ def suggest_recipes_index(input_ingredients, num_suggestions):
     return list(top_indices)
 
 
-def getRecipes(ingredients):
-    indices = suggest_recipes_index(ingredients, 3)
-    suggested_recipes_list = recipes.iloc[indices, :].values.tolist()
+def getRecipes(ingredients, diet):
+    res = requests.post(
+        "https://realfood.tesco.com/api/ingredientsearch/getrecipes",
+        json={
+            "ingredients": ingredients,
+            "dietaryRequirements": diet,
+            "mandatoryIngredients": [],
+        },
+    )
+    resData = res.json()
     suggested_recipes_dict = [
         {
-            "name": i[0],
-            "ingredients": i[6].split(","),
-            "time": i[2],
-            "cuisine": i[3],
-            "instructions": i[4],
-            "url": i[5],
-            "image": i[7],
+            "name": i["recipeName"],
+            "ingredients": i["ingredientsList"],
+            "time": i["duration"],
+            "serves": i["serves"],
+            "instructions": [],
+            "url": i["recipeUrl"].split("/")[-1][:-5],
+            "image": i["recipeImage"],
         }
-        for i in suggested_recipes_list
+        for i in resData["results"]
     ]
-    for i in range(len(suggested_recipes_dict)):
-        suggested_recipes_dict[i]["id"] = int(indices[i])
-    suggested_recipes_dict = sorted(
-        suggested_recipes_dict, key=lambda d: len(d["ingredients"])
-    )
-    return suggested_recipes_dict
+
+    if len(suggested_recipes_dict) < 3:
+        return suggested_recipes_dict
+
+    return suggested_recipes_dict[:3]
 
 
 def getRecipeByIndex(index):

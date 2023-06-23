@@ -21,11 +21,11 @@ export default function RecipeCard(props) {
                 </div>
                 <div className={classes.item}>
                     <img src={knifeFormImg} alt="icon" className={classes.icon} />
-                    <span>Cuisine: </span>
-                    <span>{props.cuisine}</span>
+                    <span>Serves: </span>
+                    <span>{props.serves}</span>
                 </div>
                 <div className={classes.btn}>
-                    <a target="_blank" rel="noopener noreferrer" href={"/recipe/" + props.id}>
+                    <a target="_blank" rel="noopener noreferrer" href={"/recipe/" + props.url}>
                         <CusButton text="View recipe" />
                     </a>
                 </div>
