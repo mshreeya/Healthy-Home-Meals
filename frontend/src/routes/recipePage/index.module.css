@@ -16,8 +16,8 @@
 
 .icon {
     height: 1.2rem;
+    width: 1.2rem;
 }
-
 
 .item {
     display: flex;
@@ -27,7 +27,7 @@
     margin-top: 0.5rem;
 }
 
-.item>span:nth-of-type(1) {
+.item > span:nth-of-type(1) {
     font-weight: bold;
 }
 
@@ -54,7 +54,7 @@
     content: "";
     display: block;
     position: absolute;
-    background: #37B74A;
+    background: #37b74a;
     width: 1rem;
     right: 0;
     top: 0;
@@ -75,10 +75,11 @@
 }
 
 .btnIng {
-    border: 2px solid #37B74A;
+    border: 2px solid #37b74a;
     padding: 0.2rem 0.5rem;
     border-radius: 1rem;
     color: rgba(0, 0, 0, 0.512);
+    width: fit-content;
 }
 
 .title {
@@ -90,7 +91,7 @@
 
 .ingredients {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 0.5rem;
     margin-bottom: 1.2rem;
 }
@@ -104,7 +105,6 @@
     .headDetails {
         flex-direction: column;
     }
-
 
     .imgWrap {
         border-radius: 1rem 1rem 0 0;

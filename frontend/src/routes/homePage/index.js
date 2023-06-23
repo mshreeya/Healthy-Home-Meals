@@ -69,7 +69,7 @@ export default function HomePage() {
 
             <section className={classes.recipesCards}>
                 {
-                    recipesData.map(e => <RecipeCard name={e.name} time={e.time} cuisine={e.cuisine} image={e.image} id={e.id} />)
+                    recipesData.map(e => <RecipeCard name={e.name} time={e.time} serves={e.serves} image={e.image} url={e.url} diet={e.diet}/>)
                 }
             </section>
         </>

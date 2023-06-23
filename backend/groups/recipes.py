@@ -10,7 +10,9 @@ def init(app, db):
     @app.route("/recipesList", methods=["POST"], endpoint="recipesList")
     @login_is_required
     def recipesList():
-        recipes = getRecipes(request.get_json()["data"])
+        data = dbUsers.find_one({"email": session["email"]}, {"_id": 0})
+        diet = data["data"]["dietaryStyle"]
+        recipes = getRecipes(request.get_json()["data"], diet)
         return {"recipes": recipes}
 
     @app.route("/recipeDetails", methods=["POST"], endpoint="recipeDetails")

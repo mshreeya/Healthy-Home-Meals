@@ -5,6 +5,11 @@ import os
 import pathlib
 import json
 import requests
+from pprint import pprint
+import json
+import requests
+from bs4 import BeautifulSoup
+from datetime import datetime, timedelta
 
 ingredients_file = os.path.join(
     pathlib.Path(__file__).parent.parent, "data/ingredients.csv"
@@ -28,41 +33,79 @@ def suggest_recipes_index(input_ingredients, num_suggestions):
     return list(top_indices)
 
 
-def getRecipes(ingredients):
-    indices = suggest_recipes_index(ingredients, 3)
-    suggested_recipes_list = recipes.iloc[indices, :].values.tolist()
+def getRecipes(ingredients, diet):
+    res = requests.post(
+        "https://realfood.tesco.com/api/ingredientsearch/getrecipes",
+        json={
+            "ingredients": ingredients,
+            "dietaryRequirements": diet,
+            "mandatoryIngredients": [],
+        },
+    )
+    resData = res.json()
+
     suggested_recipes_dict = [
         {
-            "name": i[0],
-            "ingredients": i[6].split(","),
-            "time": i[2],
-            "cuisine": i[3],
-            "instructions": i[4],
-            "url": i[5],
-            "image": i[7],
+            "name": i["recipeName"],
+            "ingredients": i["ingredientsList"],
+            "time": i["duration"],
+            "serves": i["serves"],
+            "instructions": [],
+            "url": i["recipeUrl"].split("/")[-1][:-5],
+            "image": i["recipeImage"],
+            "diet": ", ".join(i["dietary"]),
         }
-        for i in suggested_recipes_list
+        for i in resData["results"]
     ]
-    for i in range(len(suggested_recipes_dict)):
-        suggested_recipes_dict[i]["id"] = int(indices[i])
-    suggested_recipes_dict = sorted(
-        suggested_recipes_dict, key=lambda d: len(d["ingredients"])
+
+    if len(suggested_recipes_dict) < 3:
+        return suggested_recipes_dict
+
+    return suggested_recipes_dict[:3]
+
+
+def ptTimeToMins(time):
+    try:
+        t = datetime.strptime(time, "PT%MM")
+        td = timedelta(minutes=t.minute)
+        seconds = td.total_seconds()
+    except:
+        t = datetime.strptime(time, "PT%HH%MM")
+        td = timedelta(hours=t.hour, minutes=t.minute)
+        seconds = td.total_seconds()
+    return seconds // 60
+
+
+def getRecipeDetails(slug):
+    parser = "html.parser"
+    req = requests.get("https://realfood.tesco.com/recipes/" + slug + ".html")
+    soup = BeautifulSoup(req.text, parser)
+    data = json.loads(
+        "".join(soup.find("script", {"type": "application/ld+json"}).contents)
     )
-    return suggested_recipes_dict
+
+    recipes_dict = {
+        "name": data["name"],
+        "ingredients": data["recipeIngredient"],
+        "time": ptTimeToMins(data["totalTime"]),
+        "cuisine": data["recipeCuisine"],
+        "instructions": "\n".join([i["text"] for i in data["recipeInstructions"]]),
+        "url": data["url"],
+        "image": data["image"][0]["url"],
+        "id": slug,
+        "nutrition": {
+            "calories": data["nutrition"]["calories"],
+            "fats": data["nutrition"]["fatContent"],
+            "protein": data["nutrition"]["proteinContent"],
+        },
+        "feeds": data["recipeYield"],
+    }
+
+    return recipes_dict
 
 
 def getRecipeByIndex(index):
-    i = recipes.iloc[[int(index)], :].values.tolist()[0]
-    recipes_dict = {
-        "name": i[0],
-        "ingredients": i[6].split(","),
-        "time": i[2],
-        "cuisine": i[3],
-        "instructions": i[4],
-        "url": i[5],
-        "image": i[7],
-        "id": index,
-    }
+    recipes_dict = getRecipeDetails(index)
 
     res = requests.get(
         "https://www.googleapis.com/youtube/v3/search",
