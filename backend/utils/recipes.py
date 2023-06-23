@@ -33,6 +33,14 @@ def suggest_recipes_index(input_ingredients, num_suggestions):
     return list(top_indices)
 
 
+def getDietString(diet):
+    try:
+        str = (", ".join([item for item in diet if item != "Vegetarian"]),)
+    except:
+        str = "General"
+    return str
+
+
 def getRecipes(ingredients, diet):
     res = requests.post(
         "https://realfood.tesco.com/api/ingredientsearch/getrecipes",
@@ -53,7 +61,7 @@ def getRecipes(ingredients, diet):
             "instructions": [],
             "url": i["recipeUrl"].split("/")[-1][:-5],
             "image": i["recipeImage"],
-            "diet": ", ".join([item for item in i["dietary"] if item != "Vegetarian"]),
+            "diet": getDietString(i["dietary"]),
         }
         for i in resData["results"]
     ]
