@@ -5,7 +5,10 @@ import { Navigate } from "react-router-dom";
 import axios from "axios";
 import timeImg from "../../assets/time.svg";
 import knifeFormImg from "../../assets/knifefork.svg";
-import saplingImg from "../../assets/sapling.svg";
+import proteinImg from "../../assets/sapling.svg";
+import fatsImg from "../../assets/fats.svg";
+import caloriesImg from "../../assets/calories.svg";
+import peopleImg from "../../assets/people.svg";
 import CusButton from "../../components/button";
 
 export default function RecipePage(props) {
@@ -51,9 +54,24 @@ export default function RecipePage(props) {
                                     <span>{data.cuisine}</span>
                                 </div>
                                 <div className={classes.item}>
-                                    <img src={saplingImg} alt="icon" className={classes.icon} />
-                                    <span>Total ingredients: </span>
-                                    <span>{data.ingredients.length}</span>
+                                    <img src={peopleImg} alt="icon" className={classes.icon} />
+                                    <span>Feeds: </span>
+                                    <span>{data.feeds} people</span>
+                                </div>
+                                <div className={classes.item}>
+                                    <img src={caloriesImg} alt="icon" className={classes.icon} />
+                                    <span>Calories: </span>
+                                    <span>{data.nutrition.calories}</span>
+                                </div>
+                                <div className={classes.item}>
+                                    <img src={fatsImg} alt="icon" className={classes.icon} />
+                                    <span>Fat: </span>
+                                    <span>{data.nutrition.fats}</span>
+                                </div>
+                                <div className={classes.item}>
+                                    <img src={proteinImg} alt="icon" className={classes.icon} />
+                                    <span>Protein: </span>
+                                    <span>{data.nutrition.protein}</span>
                                 </div>
                                 <a href={data.url} target="_blank" rel="noopener noreferrer" >
                                     <div className={classes.originalBtn} >

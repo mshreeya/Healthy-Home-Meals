@@ -6,6 +6,10 @@ import pathlib
 import json
 import requests
 from pprint import pprint
+import json
+import requests
+from bs4 import BeautifulSoup
+from datetime import datetime, timedelta
 
 ingredients_file = os.path.join(
     pathlib.Path(__file__).parent.parent, "data/ingredients.csv"
@@ -60,18 +64,48 @@ def getRecipes(ingredients, diet):
     return suggested_recipes_dict[:3]
 
 
-def getRecipeByIndex(index):
-    i = recipes.iloc[[int(index)], :].values.tolist()[0]
+def ptTimeToMins(time):
+    try:
+        t = datetime.strptime(time, "PT%MM")
+        td = timedelta(minutes=t.minute)
+        seconds = td.total_seconds()
+    except:
+        t = datetime.strptime(time, "PT%HH%MM")
+        td = timedelta(hours=t.hour, minutes=t.minute)
+        seconds = td.total_seconds()
+    return seconds // 60
+
+
+def getRecipeDetails(slug):
+    parser = "html.parser"
+    req = requests.get("https://realfood.tesco.com/recipes/" + slug + ".html")
+    soup = BeautifulSoup(req.text, parser)
+    data = json.loads(
+        "".join(soup.find("script", {"type": "application/ld+json"}).contents)
+    )
+
     recipes_dict = {
-        "name": i[0],
-        "ingredients": i[6].split(","),
-        "time": i[2],
-        "cuisine": i[3],
-        "instructions": i[4],
-        "url": i[5],
-        "image": i[7],
-        "id": index,
+        "name": data["name"],
+        "ingredients": data["recipeIngredient"],
+        "time": ptTimeToMins(data["totalTime"]),
+        "cuisine": data["recipeCuisine"],
+        "instructions": "\n".join([i["text"] for i in data["recipeInstructions"]]),
+        "url": data["url"],
+        "image": data["image"][0]["url"],
+        "id": slug,
+        "nutrition": {
+            "calories": data["nutrition"]["calories"],
+            "fats": data["nutrition"]["fatContent"],
+            "protein": data["nutrition"]["proteinContent"],
+        },
+        "feeds": data["recipeYield"],
     }
+
+    return recipes_dict
+
+
+def getRecipeByIndex(index):
+    recipes_dict = getRecipeDetails(index)
 
     res = requests.get(
         "https://www.googleapis.com/youtube/v3/search",
